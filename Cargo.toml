@@ -1,0 +1,30 @@
+[package]
+name = "spl-token-subscription"
+version = "0.0.1"
+description = "SPL Token Subscription Program"
+authors = ["Solana Maintainers <maintainers@solana.foundation>"]
+repository = "https://github.com/solana-labs/spl-token-subscription"
+license = "Apache-2.0"
+edition = "2018"
+
+[features]
+no-entrypoint = []
+test-bpf = []
+
+[dependencies]
+arrayref = "0.3.6"
+bytemuck = "1.7.2"
+num-derive = "0.3.3"
+num_enum = "0.5.4"
+num-traits = "0.2.14"
+solana-program = "1.7.12"
+spl-associated-token-account = { version = "1.0.3", features = [ "no-entrypoint" ] }
+spl-token = { version = "3.2.0", features = [ "no-entrypoint" ] }
+thiserror = "1.0.29"
+
+[dev-dependencies]
+solana-program-test = "1.7.12"
+solana-sdk = "1.7.12"
+
+[lib]
+crate-type = ["cdylib", "lib"]
