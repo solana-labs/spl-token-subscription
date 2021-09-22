@@ -13,7 +13,7 @@ use {
 
 /// Errors that may be returned by the program
 #[derive(Clone, Debug, Eq, Error, FromPrimitive, PartialEq)]
-pub enum SubscriptionError {
+pub enum StreamError {
     // 0
     /// InstructionUnpackError
     #[error("InstructionUnpackError")]
@@ -26,19 +26,19 @@ pub enum SubscriptionError {
     MathError,
 }
 
-impl From<SubscriptionError> for ProgramError {
-    fn from(e: SubscriptionError) -> Self {
+impl From<StreamError> for ProgramError {
+    fn from(e: StreamError) -> Self {
         ProgramError::Custom(e as u32)
     }
 }
 
-impl<T> DecodeError<T> for SubscriptionError {
+impl<T> DecodeError<T> for StreamError {
     fn type_of() -> &'static str {
         "Subscribe Error"
     }
 }
 
-impl PrintProgramError for SubscriptionError {
+impl PrintProgramError for StreamError {
     fn print<E>(&self)
     where
         E: 'static + std::error::Error + DecodeError<E> + PrintProgramError + FromPrimitive,

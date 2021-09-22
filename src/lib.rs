@@ -1,6 +1,6 @@
 #![deny(missing_docs)]
 
-//! A token subscription program for the Solana blockchain
+//! A token stream program for the Solana blockchain
 
 pub mod entrypoint;
 pub mod error;

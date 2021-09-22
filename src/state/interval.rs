@@ -1,10 +1,10 @@
 use num_enum::{FromPrimitive, IntoPrimitive};
 
-/// Enum representing the intervals a subscription may be charged at
+/// Enum representing the intervals a stream may be charged at
 #[derive(Clone, Copy, Debug, Eq, PartialEq, IntoPrimitive, FromPrimitive)]
 #[repr(u64)]
 pub enum Interval {
-    /// No interval defined (the subscription can be charged at any time)
+    /// No interval defined (the stream can be charged at any time)
     #[num_enum(default)]
     None = 0,
     /// Milliseconds in a second
