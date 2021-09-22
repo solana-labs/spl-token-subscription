@@ -9,24 +9,20 @@ use {
 pub struct Subscription {
     /// Account type, must be SubscriptionV1 currently
     pub account_type: AccountType,
-    /// Status of the Subscription
+    /// Bump seed for subscription PDA of [b"subscription", product_key, authority_key]
+    pub seed: u8,
+    /// Status of the subscription
     pub status: SubscriptionStatus,
-    /// Pubkey of the Product account
-    pub product: Pubkey,
-    /// Pubkey of the Charge account
-    pub charge: Pubkey,
-    /// Token mint the price is denominated in, set at the time the subscription is created
-    pub mint: Pubkey,
-    /// Amount of tokens the price is denominated in, set at the time the subscription is created
+    /// Number of tokens that can be charged for the subscription each interval
     pub amount: u64,
-    /// Token account that will be charged
-    pub account: Pubkey,
-    /// Authority that can manage the subscription
-    pub authority: Pubkey,
+    /// Cumulative amount of tokens that have been paid for the subscription
+    pub paid: u64,
     /// URI for metadata about the subscription
     pub uri: String,
     /// Time the subscription was created
-    pub timestamp: UnixTimestamp,
+    pub created: UnixTimestamp,
+    /// Number of charges that have been created (each charge pubkey is a PDA with this index as a seed)
+    pub charges: u64,
 }
 
 /// Enum representing the statuses a subscription can have

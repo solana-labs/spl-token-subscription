@@ -1,7 +1,7 @@
 use {
+    super::*,
     num_enum::{FromPrimitive, IntoPrimitive},
     solana_program::pubkey::Pubkey,
-    super::*,
 };
 
 /// Product account state
@@ -9,14 +9,12 @@ use {
 pub struct Product {
     /// Account type, must be ProductV1 currently
     pub account_type: AccountType,
-    /// Merchant account the product belongs to
-    pub merchant: Pubkey,
+    /// Bump seed for Product PDA of [b"product", merchant_key, mint_key, index]
+    pub seed: u8,
     /// Status of the Product
     pub status: ProductStatus,
     /// Interval a subscription for the product can be charged on
     pub interval: Interval,
-    /// Token mint the price is denominated in
-    pub mint: Pubkey,
     /// Amount of tokens that can be charged for a subscription
     pub amount: u64,
     /// URI for metadata about the product
@@ -27,10 +25,10 @@ pub struct Product {
 #[derive(Clone, Copy, Debug, Eq, PartialEq, IntoPrimitive, FromPrimitive)]
 #[repr(u8)]
 pub enum ProductStatus {
-    /// The product is not active
+    /// The product is inactive and cannot be subscribed to
     #[num_enum(default)]
     Inactive,
-    /// The product is active
+    /// The product is active and can be subscribed to
     Active,
 }
 

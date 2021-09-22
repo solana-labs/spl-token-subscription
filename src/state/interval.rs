@@ -7,16 +7,20 @@ pub enum Interval {
     /// No interval defined (the subscription can be charged at any time)
     #[num_enum(default)]
     None = 0,
+    /// Milliseconds in a second
+    Second = 1_000,
+    /// Milliseconds in a minute
+    Minute = 60_000,
     /// Milliseconds in an hour
-    Hourly = 3_600_000,
+    Hour = 3_600_000,
     /// Milliseconds in a day
-    Daily = 86_400_000,
+    Day = 86_400_000,
     /// Milliseconds in a week
-    Weekly = 604_800_000,
+    Week = 604_800_000,
     /// Milliseconds in a month
-    Monthly = 2_629_800_000,
+    Month = 2_629_800_000,
     /// Milliseconds in a year
-    Yearly = 31_557_600_000,
+    Year = 31_557_600_000,
 }
 
 impl Default for Interval {
